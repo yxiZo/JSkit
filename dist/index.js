@@ -20,6 +20,16 @@ return /******/ (() => { // webpackBootstrap
 /******/ 	"use strict";
 /******/ 	var __webpack_modules__ = ({
 
+/***/ "./src/animation/springer.ts":
+/*!***********************************!*\
+  !*** ./src/animation/springer.ts ***!
+  \***********************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+eval("__webpack_require__.r(__webpack_exports__);\n/* harmony export */ __webpack_require__.d(__webpack_exports__, {\n/* harmony export */   \"default\": () => (/* binding */ Springer)\n/* harmony export */ });\n// https://github.com/tannerlinsley/springer/blob/master/src/index.js\nvar msPerFrame = 16;\nvar sampleDuration = 10000;\nvar sampleMsPerFrame = msPerFrame / (sampleDuration);\nvar reusedTuple = [0, 0];\nfunction Springer(tension, wobble) {\n    var _a;\n    if (tension === void 0) { tension = 0.5; }\n    if (wobble === void 0) { wobble = 0.5; }\n    var stiffness = Math.min(Math.max(350 * tension, 20), 350);\n    var damping = Math.min(Math.max(40 - (40 * wobble), 1), 40);\n    var steps = [];\n    var progress = 0;\n    var velocity = 0;\n    while (progress !== sampleDuration || velocity !== 0) {\n        _a = stepper(progress, sampleDuration, velocity, stiffness, damping), progress = _a[0], velocity = _a[1];\n        steps.push(progress / sampleDuration);\n    }\n    return function (i) {\n        return steps[Math.ceil(i * (steps.length - 1))];\n    };\n}\n// Inspired by https://github.com/chenglou/react-motion/blob/master/src/stepper.js\nfunction stepper(value, destination, velocity, stiffness, damping) {\n    var spring = -stiffness * (value - destination);\n    var damper = -damping * velocity;\n    var a = spring + damper;\n    var newVelocity = velocity + a * sampleMsPerFrame;\n    var newValue = value + newVelocity * sampleMsPerFrame;\n    if (Math.abs(newVelocity) < 1 && Math.abs(newValue - destination) < 1) {\n        reusedTuple[0] = destination;\n        reusedTuple[1] = 0;\n        return reusedTuple;\n    }\n    reusedTuple[0] = newValue;\n    reusedTuple[1] = newVelocity;\n    return reusedTuple;\n}\n\n\n//# sourceURL=webpack://jskit/./src/animation/springer.ts?");
+
+/***/ }),
+
 /***/ "./src/useSignal.ts":
 /*!**************************!*\
   !*** ./src/useSignal.ts ***!
@@ -36,7 +46,7 @@ eval("__webpack_require__.r(__webpack_exports__);\n/* harmony export */ __webpac
   \**********************/
 /***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
 
-eval("__webpack_require__.r(__webpack_exports__);\n/* harmony export */ __webpack_require__.d(__webpack_exports__, {\n/* harmony export */   SignalType: () => (/* reexport safe */ _useSignal_ts__WEBPACK_IMPORTED_MODULE_1__.SignalType),\n/* harmony export */   generatePriceTemplate: () => (/* reexport safe */ _thousandify_js__WEBPACK_IMPORTED_MODULE_0__.generatePriceTemplate),\n/* harmony export */   thousandify: () => (/* reexport safe */ _thousandify_js__WEBPACK_IMPORTED_MODULE_0__.thousandify),\n/* harmony export */   webBom: () => (/* reexport module object */ _web_bom_index_js__WEBPACK_IMPORTED_MODULE_2__)\n/* harmony export */ });\n/* harmony import */ var _thousandify_js__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./thousandify.js */ \"./src/thousandify.js\");\n/* harmony import */ var _useSignal_ts__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./useSignal.ts */ \"./src/useSignal.ts\");\n/* harmony import */ var _web_bom_index_js__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./web-bom/index.js */ \"./src/web-bom/index.js\");\n\n\n\n\n\n//# sourceURL=webpack://jskit/./src/index.js?");
+eval("__webpack_require__.r(__webpack_exports__);\n/* harmony export */ __webpack_require__.d(__webpack_exports__, {\n/* harmony export */   SignalType: () => (/* reexport safe */ _useSignal_ts__WEBPACK_IMPORTED_MODULE_1__.SignalType),\n/* harmony export */   generatePriceTemplate: () => (/* reexport safe */ _thousandify_js__WEBPACK_IMPORTED_MODULE_0__.generatePriceTemplate),\n/* harmony export */   springer: () => (/* reexport safe */ _animation_springer_ts__WEBPACK_IMPORTED_MODULE_3__[\"default\"]),\n/* harmony export */   thousandify: () => (/* reexport safe */ _thousandify_js__WEBPACK_IMPORTED_MODULE_0__.thousandify),\n/* harmony export */   webBom: () => (/* reexport module object */ _web_bom_index_js__WEBPACK_IMPORTED_MODULE_2__)\n/* harmony export */ });\n/* harmony import */ var _thousandify_js__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./thousandify.js */ \"./src/thousandify.js\");\n/* harmony import */ var _useSignal_ts__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./useSignal.ts */ \"./src/useSignal.ts\");\n/* harmony import */ var _web_bom_index_js__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./web-bom/index.js */ \"./src/web-bom/index.js\");\n/* harmony import */ var _animation_springer_ts__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./animation/springer.ts */ \"./src/animation/springer.ts\");\n\n\n\n\n\n\n\n\n//# sourceURL=webpack://jskit/./src/index.js?");
 
 /***/ }),
 
