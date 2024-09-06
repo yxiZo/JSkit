@@ -20,13 +20,23 @@ return /******/ (() => { // webpackBootstrap
 /******/ 	"use strict";
 /******/ 	var __webpack_modules__ = ({
 
+/***/ "./src/useSignal.ts":
+/*!**************************!*\
+  !*** ./src/useSignal.ts ***!
+  \**************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+eval("__webpack_require__.r(__webpack_exports__);\n/* harmony export */ __webpack_require__.d(__webpack_exports__, {\n/* harmony export */   SignalType: () => (/* binding */ SignalType)\n/* harmony export */ });\n// signal 实现\n// https://www.builder.io/blog/usesignal-is-the-future-of-web-frameworks\nvar SignalType;\n(function (SignalType) {\n    SignalType[SignalType[\"Signal\"] = 0] = \"Signal\";\n    SignalType[SignalType[\"Computed\"] = 1] = \"Computed\";\n    SignalType[SignalType[\"Effect\"] = 2] = \"Effect\";\n})(SignalType || (SignalType = {}));\n\n\n\n//# sourceURL=webpack://jskit/./src/useSignal.ts?");
+
+/***/ }),
+
 /***/ "./src/index.js":
 /*!**********************!*\
   !*** ./src/index.js ***!
   \**********************/
 /***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
 
-eval("__webpack_require__.r(__webpack_exports__);\n/* harmony export */ __webpack_require__.d(__webpack_exports__, {\n/* harmony export */   generatePriceTemplate: () => (/* reexport safe */ _thousandify_js__WEBPACK_IMPORTED_MODULE_0__.generatePriceTemplate),\n/* harmony export */   getQueryParam: () => (/* reexport safe */ _web_bom_js__WEBPACK_IMPORTED_MODULE_1__.getQueryParam),\n/* harmony export */   thousandify: () => (/* reexport safe */ _thousandify_js__WEBPACK_IMPORTED_MODULE_0__.thousandify)\n/* harmony export */ });\n/* harmony import */ var _thousandify_js__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./thousandify.js */ \"./src/thousandify.js\");\n/* harmony import */ var _web_bom_js__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./web-bom.js */ \"./src/web-bom.js\");\n\n\n\n\n\n//# sourceURL=webpack://jskit/./src/index.js?");
+eval("__webpack_require__.r(__webpack_exports__);\n/* harmony export */ __webpack_require__.d(__webpack_exports__, {\n/* harmony export */   SignalType: () => (/* reexport safe */ _useSignal_ts__WEBPACK_IMPORTED_MODULE_1__.SignalType),\n/* harmony export */   generatePriceTemplate: () => (/* reexport safe */ _thousandify_js__WEBPACK_IMPORTED_MODULE_0__.generatePriceTemplate),\n/* harmony export */   thousandify: () => (/* reexport safe */ _thousandify_js__WEBPACK_IMPORTED_MODULE_0__.thousandify),\n/* harmony export */   webBom: () => (/* reexport module object */ _web_bom_index_js__WEBPACK_IMPORTED_MODULE_2__)\n/* harmony export */ });\n/* harmony import */ var _thousandify_js__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./thousandify.js */ \"./src/thousandify.js\");\n/* harmony import */ var _useSignal_ts__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./useSignal.ts */ \"./src/useSignal.ts\");\n/* harmony import */ var _web_bom_index_js__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./web-bom/index.js */ \"./src/web-bom/index.js\");\n\n\n\n\n\n//# sourceURL=webpack://jskit/./src/index.js?");
 
 /***/ }),
 
@@ -40,13 +50,13 @@ eval("__webpack_require__.r(__webpack_exports__);\n/* harmony export */ __webpac
 
 /***/ }),
 
-/***/ "./src/web-bom.js":
-/*!************************!*\
-  !*** ./src/web-bom.js ***!
-  \************************/
+/***/ "./src/web-bom/index.js":
+/*!******************************!*\
+  !*** ./src/web-bom/index.js ***!
+  \******************************/
 /***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
 
-eval("__webpack_require__.r(__webpack_exports__);\n/* harmony export */ __webpack_require__.d(__webpack_exports__, {\n/* harmony export */   getQueryParam: () => (/* binding */ getQueryParam)\n/* harmony export */ });\n/**\n * @description 获取url参数\n * @param {*} field \n * @returns \n */\nfunction getQueryParam(field) {\n    const queryParams = new URLSearchParams(window.location.search);\n    if (field) {\n        return queryParams.get(field) || \"\";\n    } else {\n        const params = {};\n        queryParams.forEach((value, key) => {\n            if (params[key]) {\n                if (Array.isArray(params[key])) {\n                    params[key].push(value);\n                } else {\n                    params[key] = [params[key], value];\n                }\n            } else {\n                params[key] = value;\n            }\n        });\n        return params;\n    }\n}\n\n//# sourceURL=webpack://jskit/./src/web-bom.js?");
+eval("__webpack_require__.r(__webpack_exports__);\n/* harmony export */ __webpack_require__.d(__webpack_exports__, {\n/* harmony export */   forbidAutoScroll: () => (/* binding */ forbidAutoScroll),\n/* harmony export */   getQueryParam: () => (/* binding */ getQueryParam),\n/* harmony export */   getTopLevelDomain: () => (/* binding */ getTopLevelDomain),\n/* harmony export */   scrollToTop: () => (/* binding */ scrollToTop),\n/* harmony export */   setCookie: () => (/* binding */ setCookie),\n/* harmony export */   zoom: () => (/* binding */ zoom)\n/* harmony export */ });\n/**\n * This file contains utility functions for web, involving the use of browser BOM (e.g., history, navigator, window, location, document, etc.).\n * Therefore, please ensure the code is running in a browser environment before using it!\n */\n\n/**\n * @description Get URL parameters\n * @param {*} field \n * @returns \n */\nfunction getQueryParam(field) {\n    const queryParams = new URLSearchParams(window.location.search);\n    if (field) {\n        return queryParams.get(field) || \"\";\n    } else {\n        const params = {};\n        queryParams.forEach((value, key) => {\n            if (params[key]) {\n                if (Array.isArray(params[key])) {\n                    params[key].push(value);\n                } else {\n                    params[key] = [params[key], value];\n                }\n            } else {\n                params[key] = value;\n            }\n        });\n        return params;\n    }\n}\n\n\n/**\n * @description 禁止浏览器自动滚动到浏览位置\n * https://developer.mozilla.org/zh-CN/docs/Web/API/History/scrollRestoration\n * @returns history.scrollRestoration\n */\nfunction forbidAutoScroll() {\n    // 禁止浏览器自动滚动到浏览位置\n    if (history.scrollRestoration) {\n        history.scrollRestoration = 'manual';\n    }\n    return history.scrollRestoration\n}\n\n\n/**\n * @description 放大图片\n * @param {*} e \n */\nfunction zoom(e){\n    var zoomer = e?.currentTarget;\n    if(!zoomer) return;\n    e.offsetX ? offsetX = e.offsetX : offsetX = e.touches[0].pageX\n    e.offsetY ? offsetY = e.offsetY : offsetX = e.touches[0].pageX\n    x = offsetX/zoomer.offsetWidth*100\n    y = offsetY/zoomer.offsetHeight*100\n    zoomer.style.backgroundPosition = x + '% ' + y + '%';\n}\n\n/**\n * @description 平滑滚动到顶部\n */\nfunction scrollToTop() {\n    window.scrollTo({\n        top: 0,\n        behavior: 'smooth' // 平滑滚动\n    });\n}\n\n\n/**\n * @description 获取当前hostname顶级域名\n * @returns \n */\nfunction getTopLevelDomain() {\n      // 获取当前主机名\n      const currentHost = window.location.hostname;\n\n      // 获取顶级域名，增加容错处理\n      let topLevelDomain = '';\n      const hostParts = currentHost.split('.');\n\n      if (hostParts.length >= 2) {\n          topLevelDomain = hostParts.slice(-2).join('.');\n      } else {\n          // 当主机名不符合预期格式时，回退为当前主机名\n          topLevelDomain = currentHost;\n      }\n      return topLevelDomain\n}\n\n\n/**\n * @description 设置Cookie\n * @param {*} cookieName \n * @param {*} cookieValue \n * @param {*} cookieExpiresDays 默认7天\n * @param {*} domain 默认顶级域名\n */\nfunction setCookie({\n    cookieName = 'currentHost',\n    cookieValue = currentHost,\n    cookieExpiresDays = 7,\n    domain\n}) {\n       const topLevelDomain = domain ?? getTopLevelDomain()\n       // 创建过期时间\n       const date = new Date();\n       date.setTime(date.getTime() + (cookieExpiresDays * 24 * 60 * 60 * 1000)); // 转换为毫秒\n       const expires = `; expires=${date.toUTCString()}`;\n       // 将Cookie设置为顶级域名\n       document.cookie = `${cookieName}=${cookieValue}; domain=${topLevelDomain}; path=/${expires}`;\n}\n\n//# sourceURL=webpack://jskit/./src/web-bom/index.js?");
 
 /***/ })
 

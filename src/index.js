@@ -1,8 +1,9 @@
 import { thousandify, generatePriceTemplate } from './thousandify.js';
-import { getQueryParam } from './web-bom.js';
-// import { isMobile } from './ismobile.js';
+import { SignalType } from './useSignal.ts';
+import * as webBom from './web-bom/index.js';
 export {
-    getQueryParam,
     thousandify,
-    generatePriceTemplate
+    generatePriceTemplate,
+    SignalType,
+    webBom
 }
