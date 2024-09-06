@@ -6,6 +6,7 @@ module.exports = {
         library: {
             name: 'jskit',
             type: 'umd'
-        }
+        },
+        clean: true,
     }
 }
