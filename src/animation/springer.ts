@@ -1,4 +1,5 @@
 // https://github.com/tannerlinsley/springer/blob/master/src/index.js
+// animation-timing-function  https://developer.mozilla.org/zh-CN/docs/Web/CSS/animation-timing-function
 const msPerFrame = 16
 const sampleDuration = 10000
 const sampleMsPerFrame = msPerFrame / (sampleDuration)
