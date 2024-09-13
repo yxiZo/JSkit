@@ -349,7 +349,7 @@ interface SkuAttributeItem {
     // 图片
     skuImageUrl: string;
     // 值
-    value: any[];
+    value: string;
     // 值翻译
     valueTrans: string;
 }
@@ -374,13 +374,30 @@ interface SingleSku {
 
 
 class SKU {
-    public skuCollections: any[] = [];
-    public attributeCollection: SkuAttributeCollection[] = [];
+    public skuCollections: SingleSku[] = [];
+    public attributeCollections: SkuAttributeCollection[] = [];
     constructor(props: {
-        skuCollections: any[]
+        skuCollections: SingleSku[]
     }) {
         this.skuCollections = props.skuCollections
-        this.attributeCollection = this.getSKUAttributeCollection()
+        this.attributeCollections = this.getSKUAttributeCollection()
+    }
+
+    /**
+     * @description 所有sku值 
+     */
+    get attributeCollectionFlat() {
+        return this.attributeCollections
+    }
+
+    /**
+     * @description 获取 SKU 集合字典 , skuId 为键，sku信息为值 (库存, 价格 等)
+     */
+    get skuCollectionsDict() {
+        return this.skuCollections.reduce((acc, cur) => {
+            acc[cur.skuId] = cur
+            return acc
+        }, {})
     }
 
     /**
@@ -390,9 +407,8 @@ class SKU {
         const attributeCollection: SkuAttributeCollection[] = []
         this.skuCollections.forEach((sku) => {
             sku.skuAttributes.forEach((attribute: SkuAttribute) => {
-                // 如果属性集合中不存在该属性，则添加
-                // 如果属性集合中存在该属性，则判断是否存在该属性值，如果不存在则添加
                 const attributeIndex = attributeCollection.findIndex((item) => item.attributeId === attribute.attributeId)
+                // 如果属性集合中不存在该属性，则添加
                 if (attributeIndex === -1) {
                     attributeCollection.push({
                         attributeId: attribute.attributeId,
@@ -401,12 +417,13 @@ class SKU {
                         attributeItem: [
                             {
                                 skuImageUrl: attribute.skuImageUrl,
-                                value: [attribute.value],
+                                value: attribute.value,
                                 valueTrans: attribute.valueTrans
                             }
                         ]
                     })
                 } else {
+                    // 如果属性集合中存在该属性，则判断是否存在该属性值，如果不存在则添加到attributeItem中
                     // 判断属性值是否存在
                     const isExistValue = attributeCollection.some((item) => item.attributeItem.some((item) => item.value === attribute.value))
                     if (!isExistValue) {
@@ -421,8 +438,50 @@ class SKU {
         })
         return attributeCollection
     }
+
+    /**
+     * @description 从m中取n的所有组合
+     * @param m 
+     * @param n 
+     * @returns 
+     */
+    public getFlagArrs(m: number, n: number) {
+        var flagArrs = [],
+            flagArr = [],
+            isEnd = false;
+        for(var i = 0; i < m; i++){
+            flagArr[i] = i < n ? 1 : 0;
+        }
+        flagArrs.push(flagArr.concat());
+        // 当n不等于0并且m大于n的时候进入
+        if(n && m > n){
+            while(!isEnd){
+                var leftCnt = 0;
+                for(var i = 0; i < m - 1; i++){
+                    if (flagArr[i] == 1 && flagArr[i + 1] == 0){
+                        for(var j = 0; j < i; j++){
+                            flagArr[j] = j < leftCnt ? 1 : 0;
+                        }
+                        flagArr[i] = 0;
+                        flagArr[i + 1] = 1;
+                        var aTmp = flagArr.concat();
+                        flagArrs.push(aTmp);
+                        if(aTmp.slice(-n).join('').indexOf('0') == -1){
+                            isEnd = true;
+                        }
+                        break;
+                    }
+                    flagArr[i] == 1 && leftCnt++;
+                }
+            }
+        }
+        return flagArrs;
+    }
 }
+
 const sku = new SKU({
     skuCollections: testSku
 })
 console.log(sku.attributeCollection)
+
+export default sku
