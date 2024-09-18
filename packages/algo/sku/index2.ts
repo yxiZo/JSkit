@@ -387,15 +387,24 @@ class SKU {
      * @description 所有sku值 
      */
     get attributeCollectionFlat() {
-        return this.attributeCollections
+        return this.attributeCollections.reduce((acc, cur) => {
+            const valueArr = cur.attributeItem.map((item) => {
+                return item.value
+            })
+            acc = acc.concat(valueArr)
+            return acc
+        }, [])
     }
 
     /**
      * @description 获取 SKU 集合字典 , skuId 为键，sku信息为值 (库存, 价格 等)
      */
     get skuCollectionsDict() {
-        return this.skuCollections.reduce((acc, cur) => {
-            acc[cur.skuId] = cur
+        return this.skuCollections.reduce<Record<number, { price: null; amountOnSale: number }>>((acc, cur) => {
+            acc[cur.skuId] = {
+                price: cur.price,
+                amountOnSale: cur.amountOnSale,
+            }
             return acc
         }, {})
     }
@@ -482,6 +491,6 @@ class SKU {
 const sku = new SKU({
     skuCollections: testSku
 })
-console.log(sku.attributeCollection)
+console.log(sku.attributeCollections)
 
 export default sku

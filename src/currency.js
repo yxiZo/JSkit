@@ -1,2 +1,0 @@
-// currency.js  about money
-

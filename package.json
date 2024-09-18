@@ -3,6 +3,9 @@
   "version": "1.0.0",
   "description": "js development kit",
   "main": "index.js",
+  "workspaces": [
+    "packages/*"
+  ],
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "build": "webpack --mode development --config webpack.config.js"
@@ -10,6 +13,9 @@
   "author": "",
   "license": "ISC",
   "devDependencies": {
+    "currency.js": "^2.0.4",
+    "lozad": "^1.16.0",
+    "superstruct": "^2.0.2",
     "ts-loader": "^9.5.1",
     "typescript": "^5.5.4",
     "webpack": "^5.94.0",
