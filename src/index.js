@@ -1,4 +1,4 @@
-import { thousandify, generatePriceTemplate } from './thousandify.js';
+import { thousandify, generatePriceTemplate } from '../packages/web/thousandify.js';
 import { SignalType } from './useSignal.ts';
 import * as webBom from '../packages/web/index.js';
 import springer from '../packages/animation/springer.js';

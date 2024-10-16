@@ -47,11 +47,11 @@ export function thousandify(amount, option) {
 export function generatePriceTemplate(price, target) {
     const [intPartStr, decimalStr] = thousandify(price)
     const templateText = `
-        <div>
+        <section>
             <span class="intPartStrWrapper">{{intPartStr}}</span>
             <span class="intPoint">.</span>
             <span class="decimalStrWrapper">{{decimalStr}}</span>
-        </div>
+        </section>
     `
     const compiled = _.template(templateText)
 
