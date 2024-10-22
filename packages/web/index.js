@@ -29,6 +29,16 @@ export function getQueryParam(field) {
     }
 }
 
+/**
+ * @description set URL parameters
+ * @param {*} field 
+ * @returns 
+ */
+export function setQueryParam(field, val) {
+    // TODO:
+}
+
+
 
 /**
  * @description 禁止浏览器自动滚动到浏览位置
